@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Family Habit & Reward Game 🌟
 
-## Getting Started
+A family-focused habit and reward application that helps parents establish healthy routines for young children using positive reinforcement.
 
-First, run the development server:
+## ✨ Features
+
+### For Parents
+
+- **Dashboard** - Overview of daily task completion with simple analytics
+- **Task Management** - Create, edit, and manage habit tasks for children
+- **Child Profiles** - Manage multiple child profiles with fun animal avatars
+- **Analytics** - Daily and weekly completion tracking (no streak pressure!)
+- **Settings** - Configure rewards threshold and app preferences
+
+### For Children
+
+- **Child Mode** - Large, friendly interface with minimal text
+- **Visual Rewards** - Earn stars for completed tasks and unlock fun stickers
+- **Sticker Collection** - 15 unique sticker designs to collect
+- **Playful Animations** - Star bursts, confetti, and celebration effects
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org) (App Router)
+- **Language**: TypeScript
+- **Database**: PostgreSQL with [Prisma](https://prisma.io) ORM
+- **Authentication**: [Better Auth](https://better-auth.com)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **PWA**: Full offline support with service workers
+- **Package Manager**: pnpm
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Docker](https://docker.com) and Docker Compose
+- [Node.js](https://nodejs.org) 20+ (for local development without Docker)
+- [pnpm](https://pnpm.io) package manager
+
+### Quick Start with Docker
+
+The entire development environment runs with a single command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker compose up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This starts:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- PostgreSQL database
+- Next.js development server
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Local Development
 
-## Learn More
+1. **Clone and install dependencies**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone <repository-url>
+   cd family-habit
+   pnpm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Set up environment variables**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   cp .env.local.example .env.local
+   ```
 
-## Deploy on Vercel
+   Edit `.env.local` with your configuration:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - `DATABASE_URL` - PostgreSQL connection string
+   - `BETTER_AUTH_SECRET` - Secret key for authentication
+   - `BETTER_AUTH_URL` - Application URL
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Start the database** (if not using Docker)
+
+   ```bash
+   docker compose up postgres -d
+   ```
+
+4. **Run database migrations**
+
+   ```bash
+   pnpm prisma migrate dev
+   ```
+
+5. **Start the development server**
+
+   ```bash
+   pnpm dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📁 Project Structure
+
+```
+family-habit/
+├── src/
+│   ├── app/          # Next.js App Router pages
+│   ├── components/   # Reusable UI components
+│   ├── hooks/        # Custom React hooks
+│   ├── lib/          # Utilities, auth, and database
+│   └── types/        # TypeScript type definitions
+├── prisma/           # Database schema and migrations
+├── public/           # Static assets and PWA manifest
+├── docs/             # Documentation (PRD, etc.)
+└── docker-compose.yml
+```
+
+## 🔧 Available Scripts
+
+| Command                   | Description              |
+| ------------------------- | ------------------------ |
+| `pnpm dev`                | Start development server |
+| `pnpm build`              | Build for production     |
+| `pnpm start`              | Start production server  |
+| `pnpm lint`               | Run ESLint               |
+| `pnpm prisma migrate dev` | Run database migrations  |
+| `pnpm prisma studio`      | Open Prisma Studio       |
+
+## 🔐 Authentication Model
+
+- **Parents**: Secure authentication via Better Auth
+- **Children**: Session-based access (no login required)
+  - Parent initiates "Child Mode"
+  - Child cannot access parent features
+  - All data modifications require parent authentication
+
+## 📱 PWA Support
+
+This app is designed as a Progressive Web App:
+
+- Works offline after initial load
+- Add to Home Screen support
+- Data syncs when connection is restored
+
+## 📚 Documentation
+
+- [Product Requirements Document](./docs/PRD.md) - Detailed project specifications
+
+## 🤝 Design Principles
+
+- **No failure states** - Children only see positive feedback
+- **No negative reinforcement** - Focus on encouragement
+- **Parent control** - Parents confirm all task completions
+- **Child-safe** - No ads, analytics tracking, or external links
+- **Calm experience** - Playful but not overstimulating
+
+## 📄 License
+
+Private project - All rights reserved.
