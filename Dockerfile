@@ -8,10 +8,12 @@ WORKDIR /app
 # Build arguments
 ARG DATABASE_URL
 ARG NEXT_PUBLIC_APP_URL
+ARG BETTER_AUTH_SECRET
 
 # Set as environment variables for build
 ENV DATABASE_URL=$DATABASE_URL
 ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+ENV BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
