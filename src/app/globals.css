@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+/* ==========================================
+   Family Habit - Playful & Colorful Theme
+   ========================================== */
+
+:root {
+  /* Primary Colors - Playful & Bright */
+  --primary: #f59e0b; /* Amber - Main accent */
+  --primary-light: #fbbf24; /* Lighter amber */
+  --primary-dark: #d97706; /* Darker amber */
+
+  /* Secondary Colors */
+  --secondary: #8b5cf6; /* Purple - Fun accent */
+  --secondary-light: #a78bfa;
+  --secondary-dark: #7c3aed;
+
+  /* Accent Colors for variety */
+  --accent-pink: #ec4899;
+  --accent-green: #10b981;
+  --accent-blue: #3b82f6;
+  --accent-orange: #f97316;
+
+  /* Backgrounds */
+  --background: #fffbeb; /* Warm cream */
+  --background-card: #ffffff;
+  --background-child: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+
+  /* Text */
+  --foreground: #1f2937;
+  --foreground-muted: #6b7280;
+
+  /* Status Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-playful: 0 8px 30px rgb(251 191 36 / 0.3);
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-full: 9999px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Base Styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Child Mode Background */
+.child-mode {
+  background: var(--background-child);
+  min-height: 100vh;
+}
+
+/* Playful Button Styles */
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-playful);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgb(251 191 36 / 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Card Styles */
+.card {
+  background: var(--background-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Task Card for Children - Large Touch Targets */
+.task-card {
+  background: var(--background-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-playful);
+}
+
+.task-card.completed {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-color: var(--success);
+}
+
+/* Icon Sizes */
+.icon-lg {
+  font-size: 3rem;
+}
+
+.icon-xl {
+  font-size: 4rem;
+}
+
+/* Animations */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes star-burst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s ease-out forwards;
+}
+
+.animate-star-burst {
+  animation: star-burst 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Sticker Grid */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1rem;
+}
+
+.sticker {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: var(--background-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.sticker.unlocked {
+  animation: bounce-in 0.5s ease-out;
+}
+
+.sticker.locked {
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+/* Star Counter */
+.star-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+}
+
+/* Avatar Circle */
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--secondary-light) 0%,
+    var(--secondary) 100%
+  );
+  box-shadow: var(--shadow-md);
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent-orange) 100%
+  );
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+}
