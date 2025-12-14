@@ -5,6 +5,14 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Build arguments
+ARG DATABASE_URL
+ARG NEXT_PUBLIC_APP_URL
+
+# Set as environment variables for build
+ENV DATABASE_URL=$DATABASE_URL
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
 

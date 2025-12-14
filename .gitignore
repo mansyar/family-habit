@@ -49,3 +49,18 @@ next-env.d.ts
 /src/generated/client
 # Tailwind CSS
 .scannerwork/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# pnpm
+.pnpm-store/
+
+# Logs
+*.log
